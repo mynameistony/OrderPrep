@@ -61,8 +61,10 @@ function showCat(){
 }
 
 function submitList(){
-	 var s = prompt("You have to know the password to add to the prep list");
-	 if(s == "secure"){
+	
+	// var s = prompt("You have to know the password to add to the prep list");
+	 //if(s == "secure"){
+
 			window.location.reload();
 
 			var p = newItemName.length-1;
@@ -86,9 +88,10 @@ function submitList(){
 				outputCurrentList("Order");
 
 
-	 }else{
-	 	alert("Nope");
-	 }
+	// }
+	//else{
+	// 	alert("Nope");
+	 //}
 
 }
 
@@ -102,8 +105,9 @@ function removeFromTmpList(id){
 }
 
 function removeFromList(c,id){
-	 var security = prompt("You gotta know the password to remove items from the list");
-	 if(security == "secure"){
+	//var security = prompt("You gotta know the password to remove items from the list");
+	//if(security == "secure"){
+
 		document.getElementById(id).innerHTML="";
 		var h = new XMLHttpRequest();
 		h .open( "GET", "/action.php?remove=t&c="+c+"&id="+id,true);
@@ -115,10 +119,11 @@ function removeFromList(c,id){
 		else
 			l="Order";
 
-		//outputCurrentList(l);
-	 }else{
-	 	alert("Nope");
-	 }
+		outputCurrentList(l);
+	// }
+	//{
+	 //	alert("Nope");
+	 //}
 }
 
 function outputTmpList(){
