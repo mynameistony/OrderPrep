@@ -1,3 +1,0 @@
-Frozen:2:3:Onion Rings
-Frozen:3:3:Sweet Potato Fries
-Cleaning:2:1:Toilet Paper
