@@ -1,19 +1,27 @@
-Prep:7:Half:Salmon Cake
-Prep:5:Half:Potato Cake
-
-
+Prep:1:Half:Ribeye
+Prep:14:Backup:Detailed Shrimp
+Prep:16:1:Slaw
+Prep:17:Reheat:Baked Potatoes
+Prep:20:Half:Creme Brules
+Prep:22:Half:Hummus
+Prep:23:1:Mango Salsa
+Prep:24:Half:Bacon
+Prep:26:1:Wontons
+Prep:28:Half:Slaw Dressing
+Prep:29:Half:Cocktail Sauce
+Prep:30:Half:Chipotle Mayo
 Prep:31:Half:Gorg Dressing
 Prep:32:1:Chimmi Churry
-Prep:29:Half:Cocktail Sauce
 Prep:33:1:Slice Toms
-Prep:28:1:Slaw Dressing
-
-Pull:6:1:Shrimp
-Pull:9:1:Gorgonzola Cheese
-
-Pull:3:10:Chicken
-Pull:11:1:Ebi
-Pull:12:1:Tuna Blocks
-Pull:5:1:Fish
-Pull:4:1:Calamari
-Pull:7:5:Mahi Mahi
+Prep:34:1:Dice Toms
+Prep:35:1:Onions
+Prep:36:1:Lemons
+Prep:37:1:Limes
+Prep:38:1:Mushrooms
+Prep:39:1:Garlic
+Prep:40:1:Veg
+Prep:41:1:Marsala Flour
+Prep:42:1:Calamari Flour
+Prep:43:1:Steak Seasoning
+Prep:44:1:Pasta Seasoning
+Prep:45:1:Fryer Oil

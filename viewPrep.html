@@ -1,10 +1,11 @@
 <link rel="stylesheet" href="/style.css">
-<script src="/prepscripts.js"></script>
+<script src="/scripts.js"></script>
 <body>
 <center>
 <p class=text><a href="/">Home Page</a></p>
-<p class=text><a href="/prep.html">Add to the prep list</a></p>
+<p class=text><a href="/prep.html">Add to the Prep List</a></p>
+<p class=button onclick="outputCurrentList('Prep')">Refresh</p>
 <p class=text id="currentListHolder"></p>
+<script>outputCurrentList("Prep")</script>
 </center>
 </body>
-<script>outputCurrentPrepList(); setInterval(outputCurrentPrepList, 3000)</script>

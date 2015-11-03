@@ -6,11 +6,11 @@ if [ $# -gt 0 ]
 		for item in $(cat list/$1)
 		do
 			c=$((c+1))
-			echo "<p class=list-item><i id=i$c onclick=addToList($c,1)>$item</i> <b id=d$c onclick=addToList($c,2)>x2</b> <b id=t$c onclick=addToList($c,3)>x3</b></p>"
+			echo "<p class=list-item><i id=i$c onclick=addToList($c,1,'$1')>$item</i> <b id=d$c onclick=addToList($c,2,'$1')>x2</b> <b id=t$c onclick=addToList($c,3,'$1')>x3</b></p>"
 		done	
 else
-	echo "<select id=catSelect onchange=showCat()>" #I wanna see your cat
-	echo "<option>--Pick A Category--</option>"
+	echo "<select id=selector onchange=showCat()>" #I wanna see your cat
+	echo "<option>- - Click to Add Items - -</option>"
 	for cat in $(ls list)
 	do
 		c=$((c+1))

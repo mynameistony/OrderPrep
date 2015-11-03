@@ -49,26 +49,30 @@ function showCat(){
     		document.getElementById("categoryHolder").innerHTML = h.responseText;
     	}
   	}
-
 	h .open( "GET", "/action.php?type=" + c,true);
 	h.send(null);
 	document.getElementById("categoryHolder").innerHTML = "<p class=text>Loading...</p>";
 }
 
 function submitList(){
-	for (var i = 0; i < newItemCount; i++) {
-		var q = "cat="+newItemCategory[i]+"&id=" + newItemId[i] + "&name=" + newItemName[i] + "&q=" + newItemQuantity[i];
-		var h = new XMLHttpRequest();
-		h.onreadystatechange=function(){
-			if (h.readyState==4 && h.status==200){
-				removeFromTmpList(i);
-	    	}
-	  	}
-	  	h .open( "GET", "/addToPrep.php?" + q,true);
-		h.send(null);
+	var s = prompt("You have to know the password to add to the order list");
+	if(s == "secure"){
+		for (var i = 0; i < newItemCount; i++) {
+			var q = "cat="+newItemCategory[i]+"&id=" + newItemId[i] + "&name=" + newItemName[i] + "&q=" + newItemQuantity[i];
+			var h = new XMLHttpRequest();
+			h.onreadystatechange=function(){
+				if (h.readyState==4 && h.status==200){
+					removeFromTmpList(i);
+		    	}
+		  	}
+		  	h .open( "GET", "/addToPrep.php?" + q,true);
+			h.send(null);
 
+		}
+		window.location = "/viewPrep.html";
+	}else{
+		alert("Sorry, your not allow to do that");
 	}
-	//window.location = "/viewOrder.php";
 
 }
 
@@ -83,18 +87,20 @@ function removeFromTmpList(id){
 }
 
 function removeFromList(cat,id){
-		var h = new XMLHttpRequest();
-		h.onreadystatechange=function(){
-			if (h.readyState==4 && h.status==200){
-				document.getElementById("currentListHolder").innerHTML = h.responseText;
-	    	}
-	  	}
-		h .open( "GET", "/action.php?remove=true&cat="+cat+"&id="+id+"&type=prep",true);
-		h.send(null);
-
-
+		var security = prompt("You gotta know the password to remove items from the list");
+		if(security == "secure"){
+			var h = new XMLHttpRequest();
+			h.onreadystatechange=function(){
+				if (h.readyState==4 && h.status==200){
+					document.getElementById("currentListHolder").innerHTML = h.responseText;
+		    	}
+		  	}
+			h .open( "GET", "/action.php?remove=true&cat="+cat+"&id="+id+"&type=prep",true);
+			h.send(null);
+		}else{
+			alert("Sorry, you can't do that");
+		}
 }
-
 function outputTmpList(){
 	if(newItemCount > 0){
 		var tmpList = "<p>";
@@ -118,13 +124,9 @@ function outputTmpList(){
 
 function outputCurrentPrepList(){
 		var h = new XMLHttpRequest();
-		h.onreadystatechange=function(){
-			if (h.readyState==4 && h.status==200){
-				document.getElementById("currentListHolder").innerHTML = h.responseText;
-	    	}
-	  	}
 		h .open( "GET", "/action.php?type=prep&view=currentlist",true);
 		h.send(null);
-
-		//document.getElementById("currentListHolder").innerHTML = "<p class=text>Loading...</p>";
+		document.getElementById("currentListHolder").innerHTML = "<p class=text>Loading...</p>";
+		document.getElementById("currentListHolder").innerHTML = h.responseText;
+		
 }
