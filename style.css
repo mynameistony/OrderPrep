@@ -1,6 +1,9 @@
+input{
+  font-size: 70px;
+}
 body{
 
-  background-color:antiquewhite
+  background-color:antiquewhite;
 }
 
 .list-item{
@@ -16,7 +19,13 @@ body{
 
 .button{
   width: 100%;
+  font-size: 70px;
+  background-color:  burlywood;
+  border-radius: 20px;
+}
 
+.addbutton{
+  width: 100%;
   font-size: 70px;
   background-color:  burlywood;
   border-radius: 20px;

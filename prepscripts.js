@@ -3,9 +3,16 @@ var newItemId = [];
 var newItemName = [];
 var newItemQuantity = [];
 var newItemCategory = [];
+
+function addNumberToList(id){
+	var q = document.getElementById("amount"+id).value;
+
+	addToList(id,q);
+}
+
 function addToList(id,quantity){
-	var cat = document.getElementById("catSelect").value;
-	var name = document.getElementById("i"+id).innerHTML;
+	var cat = document.getElementById("selector").value;
+	var name = document.getElementById(id).innerHTML;
 	var isDupe = false;
 	var dupePos = 0;
 	if(newItemCount > 0){
@@ -31,8 +38,8 @@ function addToList(id,quantity){
 }
 
 function showCat(){
-	var c = document.getElementById("catSelect").value;
-	if(c == "--Pick A Category--"){
+	var c = document.getElementById("selector").value;
+	if(c == "--Prep or Pull--"){
 		document.getElementById("categoryHolder").innerHTML = "";
 		return 0;
 	}
@@ -42,8 +49,8 @@ function showCat(){
     		document.getElementById("categoryHolder").innerHTML = h.responseText;
     	}
   	}
-  		
-	h .open( "GET", "/action.php?cat=" + c,true);
+
+	h .open( "GET", "/action.php?type=" + c,true);
 	h.send(null);
 	document.getElementById("categoryHolder").innerHTML = "<p class=text>Loading...</p>";
 }
@@ -57,7 +64,7 @@ function submitList(){
 				removeFromTmpList(i);
 	    	}
 	  	}
-	  	h .open( "GET", "/addToOrder.php?" + q,true);
+	  	h .open( "GET", "/addToPrep.php?" + q,true);
 		h.send(null);
 
 	}
@@ -82,7 +89,7 @@ function removeFromList(cat,id){
 				document.getElementById("currentListHolder").innerHTML = h.responseText;
 	    	}
 	  	}
-		h .open( "GET", "/action.php?remove=true&cat="+cat+"&id="+id,true);
+		h .open( "GET", "/action.php?remove=true&cat="+cat+"&id="+id+"&type=prep",true);
 		h.send(null);
 
 
@@ -94,8 +101,11 @@ function outputTmpList(){
 		for (var i = newItemCount-1; i >= 0; i--) {
 			if(i > newItemCount - 4){
 				tmpList += "<p class=button onclick=removeFromTmpList("+i+")>";
-				tmpList += newItemName[i];
-				tmpList += " x" + newItemQuantity[i] + "</p>";
+				tmpList += newItemName[i] + " - ";
+				if(isNaN(newItemQuantity[i]))
+					tmpList += newItemQuantity[i] + "</p>";	
+				else
+					tmpList += "x" + newItemQuantity[i] + "</p>";
 			}
 		}
 
@@ -106,14 +116,14 @@ function outputTmpList(){
 	}
 }
 
-function outputCurrentList(){
+function outputCurrentPrepList(){
 		var h = new XMLHttpRequest();
 		h.onreadystatechange=function(){
 			if (h.readyState==4 && h.status==200){
 				document.getElementById("currentListHolder").innerHTML = h.responseText;
 	    	}
 	  	}
-		h .open( "GET", "/action.php?view=currentlist",true);
+		h .open( "GET", "/action.php?type=prep&view=currentlist",true);
 		h.send(null);
 
 		//document.getElementById("currentListHolder").innerHTML = "<p class=text>Loading...</p>";
