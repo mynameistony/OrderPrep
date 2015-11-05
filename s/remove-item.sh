@@ -7,4 +7,4 @@ else
 	t=order.tmp
 fi
 cat "$f" | grep "^$1:$2" -v > "$t"
-cat "$t" | grep "^.*$" > "$f"
+cat "$t" | grep "^.*$" | sort > "$f"

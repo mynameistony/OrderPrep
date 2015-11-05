@@ -8,10 +8,8 @@ function addNumberToList(id,cat){
 	addToList(id,q,cat);
 }
 
-
 function addToList(id,q,c){
-	var p = newItemName.length;
-	
+	var p = newItemName.length;	
 	var n = document.getElementById("i"+id).innerHTML;
 	if(p < 0){
 		newItemCategory[0] = c;
@@ -46,6 +44,7 @@ function addToList(id,q,c){
 }
 
 function showCat(){
+	document.getElementById("currentListHolder").innerHTML = "<p class=text>Loading...</p>";
 	var c = document.getElementById("selector").value;
 	if(c[0] == '-'){
 		document.getElementById("currentListHolder").innerHTML = "";
@@ -59,36 +58,42 @@ function showCat(){
   	}  		
 	h .open( "GET", "/action.php?c=" + c,true);
 	h.send(null);
-	document.getElementById("currentListHolder").innerHTML = "<p class=text>Loading...</p>";
 }
 
 function submitList(){
-	// var s = prompt("You have to know the password to add to the prep list");
-	// if(s == "secure"){
-		var p = newItemName.length-1;
+	 var s = prompt("You have to know the password to add to the prep list");
+	 if(s == "secure"){
+			window.location.reload();
 
-		for (var r = 0; r < newItemName.length; r++) {
-			var q = "c=" + newItemCategory[r] + "&id=" + newItemId[r] + "&q=" + newItemQuantity[r] + "&n=" + newItemName[r];
-			var h = new XMLHttpRequest();
-		  	h .open( "GET", "/addToList.php?" + q,false);
-			h.send(null);
-			//removeFromTmpList(r);
-		}
-		c=newItemCategory[p];
+			var p = newItemName.length-1;
 
-		if(c == "Prep" || c == "Pull")
-			outputCurrentList("Prep");
-			//window.location = "/viewPrep.html";
-		else
-			outputCurrentList("Order");
-			// window.location = "/viewOrder.html";
-	// }else{
-	// 	alert("Sorry, your not allow to do that");
-	// }
+			for (var r = 0; r < newItemName.length; r++) {
+				var q = "c=" + newItemCategory[r] + "&id=" + newItemId[r] + "&q=" + newItemQuantity[r] + "&n=" + newItemName[r];
+				var h = new XMLHttpRequest();
+			  	h .open( "GET", "/addToList.php?" + q,true);
+				h.send(null);
+			}
+
+			newItemId = [];
+			newItemName = [];
+			newItemQuantity = [];
+			newItemCategory = [];
+			
+			c=newItemCategory[p];
+			if(c == "Prep" || c == "Pull")
+				outputCurrentList("Prep");
+			else
+				outputCurrentList("Order");
+
+
+	 }else{
+	 	alert("Nope");
+	 }
 
 }
 
 function removeFromTmpList(id){
+	
 	newItemName.splice(id,1);
 	newItemQuantity.splice(id,1);
 	newItemId.splice(id,1);
@@ -97,10 +102,11 @@ function removeFromTmpList(id){
 }
 
 function removeFromList(c,id){
-	// var security = prompt("You gotta know the password to remove items from the list");
-	// if(security == "secure"){
+	 var security = prompt("You gotta know the password to remove items from the list");
+	 if(security == "secure"){
+		document.getElementById(id).innerHTML="";
 		var h = new XMLHttpRequest();
-		h .open( "GET", "/action.php?remove=t&c="+c+"&id="+id,false);
+		h .open( "GET", "/action.php?remove=t&c="+c+"&id="+id,true);
 		h.send(null);
 
 		var l = "";
@@ -109,11 +115,10 @@ function removeFromList(c,id){
 		else
 			l="Order";
 
-
-		outputCurrentList(l);
-	// }else{
-	// 	alert("Sorry, you can't do that");
-	// }
+		//outputCurrentList(l);
+	 }else{
+	 	alert("Nope");
+	 }
 }
 
 function outputTmpList(){
@@ -121,21 +126,23 @@ function outputTmpList(){
 	var l = "";
 
 	if(p < 0){
-		document.getElementById("banner").innerHTML = "Nothing to add";
+		document.getElementById("banner").innerHTML = "No items pending";
 	}
 	else{
 		for (var i = p; i >= 0; i--) {
-			if(i > p-3){
-				l += "<p class=tmpbutton onclick=removeFromTmpList("+i+")>";
+			// if(i > p-4){
+				l += "<b class=tmpbutton onclick=removeFromTmpList("+i+")>";
 				l += newItemName[i];
-				l += " " + newItemQuantity[i] + "</p>";
-			}
+				l += "(" + newItemQuantity[i] + ")</b>";
+			// }
 		}
-		document.getElementById("banner").innerHTML = "<u>" + Number(p+1) + "</u> items<br><button class=addbutton onclick=submitList()>Add to the list</button>" + l;
+		document.getElementById("banner").innerHTML = "&emsp;<u><b>" + Number(p+1) + "</b> items pending</u><br><button class=addbutton onclick=submitList()>Add to the list</button>" + l;
 	}
 }
 
 function outputCurrentList(list){
+
+		document.getElementById("currentListHolder").innerHTML = "<p class=text>Loading...</p>";
 		var h = new XMLHttpRequest();
 		h.onreadystatechange=function(){
 			if (h.readyState==4 && h.status==200){
@@ -148,7 +155,13 @@ function outputCurrentList(list){
 			h .open( "GET", "/action.php?view=orderlist",true);
 
 		h.send(null);
-		document.getElementById("currentListHolder").innerHTML = "<p class=text>Loading...</p>";
+
+		try{
+			document.getElementById("selector").options[0].selected = true;			
+		}catch(err){
+			console.log("oh well");
+		}
+		
 }
 
 function outputOrderCatSelect(){

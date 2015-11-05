@@ -15,9 +15,11 @@ fi
 cat "$f" | grep "$n"
 if [ "$?" == "1" ]
 	then
-	echo "$c:$id:$q:$n" >> "$f"
+	cat "$f" > "$t"
+	echo "$c:$id:$q:$n" >> "$t"
+	cat "$t" | grep "^.*$" -o | sort > "$f"
 else
 	cat "$f" | grep "$n" -v > "$t"
 	echo "$c:$id:$q:$n" >> "$t"
-	cat "$t" | grep "^.*$" -o > "$f"
+	cat "$t" | grep "^.*$" -o | sort > "$f"
 fi

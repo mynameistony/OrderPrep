@@ -2,17 +2,17 @@
 <script src="/scripts.js"></script>
 <body>
 <center>
-<p class="text"><a href="/order.html">Switch to Order</a></p>
-<p class="text" onclick="outputCurrentList('Prep')">Show Prep List</a></p>
+<p id="top" class="text"><a href="/order.html">Switch to Order</a></p>
+<p class="text" onclick="outputCurrentList('Prep')">- - Click Here to Show Prep List - -</a></p>
 <p>
 <select onchange="showCat()" id="selector">
-	<option>- - Click to Add Items - -</option>
+	<option selected>- - Click Here to Add Items - -</option>
 	<option>Prep</option>
 	<option>Pull</option>
 </select>
 <p class="category" id="currentListHolder"></p>
-<p class="banner" id="banner" >No new items to add</p>
-<script type="text/javascript">showCat()</script>
+<p class="banner" id="banner" >&emsp;No items pending</p>
+<script type="text/javascript">outputCurrentList("Prep");</script>
 <p>.</p>
 <p>.</p>
 <p>.</p>

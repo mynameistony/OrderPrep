@@ -9,19 +9,27 @@ else
 	t=order.tmp
 fi
 
-for p in $(cat $f)
-do
+j=$(cat $f)
 
-	c=$(echo "$p" | awk -F: '{print $1}')
-	id=$(echo "$p" | awk -F: '{print $2}')
-	q=$(echo "$p" | awk -F: '{print $3}')
-	n=$(echo "$p" | awk -F: '{print $4}')
+if [ "$j" == "" ]
+	then
+	echo "<p class=button>Looks like the list is empty</p>"
+else
 
-	if [ "$1" == "prep" ]
-		then
-		echo "<p class=button onclick=removeFromList('$c','$id')>$c - $n - $q</p>"
-	else
-		echo "<p class=button onclick=removeFromList('$c','$id')>$n x$q</p>"
-	fi
-done
-IFS=SAVEIFS
+	for p in $(cat $f)
+	do
+
+		c=$(echo "$p" | awk -F: '{print $1}')
+		id=$(echo "$p" | awk -F: '{print $2}')
+		q=$(echo "$p" | awk -F: '{print $3}')
+		n=$(echo "$p" | awk -F: '{print $4}')
+
+		if [ "$1" == "prep" ]
+			then
+			echo "<p id=$id class='prep button' onclick=removeFromList('$c','$id')>$n($q)</p>"
+		else
+			echo "<p id=$id class='order button' onclick=removeFromList('$c','$id')>$n($q)</p>"
+		fi
+	done
+fi
+IFS=$SAVEIFS

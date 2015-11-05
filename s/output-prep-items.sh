@@ -13,48 +13,48 @@ do
 	if [ "$check" == "1" ]
 		then
 			# echo "Multiple"
-			echo "<i id=i$c onclick=addToList($c,1,'$1')>$name</i>"
+			echo "<b id=i$c onclick=addToList($c,1,'$1')>$name</b>"
 			# echo "$q1:$q2:$q3"
 			if [ "$q1" != "" ]
 				then
-				echo " - <b onclick=addToList($c,'$q1','$1')>x$q1</b>"
+				echo " - <i onclick=addToList($c,'$q1','$1')>x$q1</i>"
 			fi
 
 			if [ "$q2" != "" ]
 				then
-				echo " - <b onclick=addToList($c,'$q2','$1')>x$q2</b>"
+				echo " - <i onclick=addToList($c,'$q2','$1')>x$q2</i>"
 			fi
 
 			if [ "$q3" != "" ]
 				then
-				echo " - <b onclick=addToList($c,'$q3','$1')>x$q3</b>"
+				echo " - <i onclick=addToList($c,'$q3','$1')>x$q3</i>"
 			fi	
 	else
 		if [ "$q1" == "Number" ]
 			then
 				# echo "Number"
-				echo "<i id=i$c>$name</i>"
+				echo "<b id=i$c>$name</b>"
 				echo "<input id=amount$c type=number onchange=addNumberToList($c,'$1')>"
 			else
 				# echo "Batch"
-				echo "<i id=i$c onclick=addToList($c,1,'$1')>$name</i>"			
+				echo "<b id=i$c onclick=addToList($c,1,'$1')>$name</b>"
 				if [ "$q1" != "" ]
 					then
-					echo " - <b onclick=addToList($c,'$q1','$1')>$q1</b>"
+					echo " - <i onclick=addToList($c,'$q1','$1')>$q1</i>"
 				fi
 			fi
 
 			if [ "$q2" != "" ]
 				then
-				echo " - <b onclick=addToList($c,'$q2','$1')>$q2</b>"
+				echo " - <i onclick=addToList($c,'$q2','$1')>$q2</i>"
 			fi
 
 			if [ "$q3" != "" ]
 				then
-				echo " - <b onclick=addToList($c,'$q3','$1')>$q3</b>"
+				echo " - <i onclick=addToList($c,'$q3','$1')>$q3</i>"
 			fi	
 	fi			
 	echo "</p>"
 done
 
-IFS=SAVEIFS
+IFS=$SAVEIFS

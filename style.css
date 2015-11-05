@@ -3,14 +3,14 @@ input{
 }
 body{
 
-  background-color:antiquewhite;
+  background-color:blueviolet;
 }
 
 .list-item{
   font-size: 70px;
   background-color: lightblue;
   border-radius: 25px;
-  text-align: center;
+  text-align: left;
 }
 
 .checkbox{
@@ -24,12 +24,6 @@ body{
   border-radius: 20px;
 }
 
-.addbutton{
-  width: 100%;
-  font-size: 70px;
-  background-color:  burlywood;
-  border-radius: 20px;
-}
 
 .full{
   width: 100%;
@@ -40,7 +34,7 @@ body{
 }
 
 .text{
-  font-size: 70px;
+  font-size: 60px;
   background-color: lightblue;
   border-radius: 25px;
   text-align: center;
@@ -53,25 +47,50 @@ body{
   background-color: lightcoral;
 }
 
-.banner{
-  position: fixed;
-  bottom: 0px;
-  background-color: greenyellow;
-  width: 100%;
-  font-size: 40px;
-  color: brown;
-  
-}
 
 select{
   text-align: center;
   width: 100%;
   height: 150px;
   font-size: 50px;
-  background-color:  burlywood;
+  background-color:  lightblue;
   border-radius: 20px;
 }
 
 .tmpList{
   font-size: 20px;
+}
+
+.tmpbutton{
+  font-size: 45px;
+}
+
+.addbutton{
+  width: 100%;
+  font-size: 70px;
+  background-color:  burlywood;
+  border-radius: 20px;
+  color: lightgreen;
+  background-color: cadetblue;
+  border-radius: 40px;
+  opacity: 1.0;
+  
+}
+
+.banner{
+  position: fixed;
+  bottom: 0px;
+  left: 0px;
+  background-color: lightgrey;
+  width: 99%;
+  font-size: 40px;
+  color: brown; 
+  text-align: cent;
+  opacity: .95;
+  border-radius: 100px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 20px;
+  padding-top: 20px;
+
 }

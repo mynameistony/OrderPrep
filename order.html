@@ -2,12 +2,12 @@
 <script src="/scripts.js"></script>
 <body>
 <center>
-<p class="text"> <a href="/prep.html">Switch to Prep List</a></p>
-<p class="text" onclick="outputCurrentList('Order')">Show Order</a></p>
+<p id="top" class="text"> <a href="/prep.html">Switch to Prep List</a></p>
+<p class="text" onclick="outputCurrentList('Order')">- - Click Here to Show Order - -</a></p>
 <p class="category" id="categoryHolder"></p>
 <p class="button" id="currentListHolder"></p>
-<p class="banner" id="banner" >No new items to add</p>
-<script type="text/javascript">outputOrderCatSelect()</script>
+<p class="banner" id="banner" >&emsp;No items pending</p>
+<script type="text/javascript">outputOrderCatSelect();outputCurrentList("Order")</script>
 <p>.</p>
 <p>.</p>
 <p>.</p>
